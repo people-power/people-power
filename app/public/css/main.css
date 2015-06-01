@@ -1,0 +1,10 @@
+.jumbotron{
+  background-image: url('../images/people-power.png');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-color: #fff;
+  margin-top: 50px;
+}
+.jumbotron h1{
+  padding-top: 150px;
+}
