@@ -1,7 +1,7 @@
 module.exports = function(app, passport){
   /* GET home page. */
   app.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+    res.render('index.ejs', { title: 'Express' });
   });
 
   app.get('/login', function(req, res, next){
