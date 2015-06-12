@@ -6,6 +6,15 @@
     <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
     <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
   </div>
+  <% if(user){ %>
+      Ask a question!
+      <form action="/create_comment" method="post">
+        <div class="form-group">
+          <textarea cols="40" rows="5" name="myname"></textarea>
+        </div>
+        <button type="submit" class="btn btn-warning btn-lg">Ask</button>
+      </form>
+  <% } %>  
 </main>
 <% include footer %>
 

@@ -8,12 +8,12 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var routes = require('./app/routes/index');
 
-var port = process.env.PORT || 3000;
-var server = app.listen(port, function () {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('People Power listening at ', host, port);
-});
+// var port = process.env.PORT || 3000;
+// var server = app.listen(port, function () {
+//   var host = server.address().address;
+//   var port = server.address().port;
+//   console.log('People Power listening at ', host, port);
+// });
 
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -82,4 +82,4 @@ app.use(function(req, res, next) {
 // });
 
 
-module.exports = server;
+module.exports = app;

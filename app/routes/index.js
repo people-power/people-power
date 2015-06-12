@@ -1,7 +1,7 @@
 module.exports = function(app, passport){
   /* GET home page. */
   app.get('/', function(req, res, next) {
-    res.render('index.ejs', { title: 'Express' });
+    res.render('index.ejs', { user: req.user });
   });
 
   app.get('/login', function(req, res, next){
@@ -24,14 +24,14 @@ module.exports = function(app, passport){
   });
 
   app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/profile', // redirect to the secure profile section
+    successRedirect : '/', // redirect to the secure profile section
     failureRedirect : '/signup', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
   }));
 
   // process the login form
   app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/profile', // redirect to the secure profile section
+    successRedirect : '/', // redirect to the secure profile section
     failureRedirect : '/login', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
   }));

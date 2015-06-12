@@ -7,6 +7,7 @@ var questionSchema = mongoose.Schema({
     lastname: String,
     username: String      
   },
+  title: String,
   body: String,
   comments: [{
     _id: Schema.Types.ObjectId
