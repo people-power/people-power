@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var questionSchema = mongoose.Schema({
   user: { 
@@ -10,7 +11,7 @@ var questionSchema = mongoose.Schema({
   title: String,
   body: String,
   comments: [{
-    _id: Schema.Types.ObjectId
+    _id: Schema.Types.ObjectId,
     body: String
   }],
   created: { type: Date, default: Date.now },

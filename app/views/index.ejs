@@ -8,9 +8,9 @@
   </div>
   <% if(user){ %>
       Ask a question!
-      <form action="/create_comment" method="post">
+      <form action="/create_question" method="post">
         <div class="form-group">
-          <textarea cols="40" rows="5" name="myname"></textarea>
+          <textarea cols="40" rows="5" name="comment"></textarea>
         </div>
         <button type="submit" class="btn btn-warning btn-lg">Ask</button>
       </form>

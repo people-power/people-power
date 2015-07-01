@@ -8,13 +8,6 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var routes = require('./app/routes/index');
 
-// var port = process.env.PORT || 3000;
-// var server = app.listen(port, function () {
-//   var host = server.address().address;
-//   var port = server.address().port;
-//   console.log('People Power listening at ', host, port);
-// });
-
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -39,16 +32,24 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/app/public')));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
+// app.use(session(
+//   {
+//     secret: 'getting hungry',
+//     saveUninitialized: false,
+//     resave: false
+//   }
+// ));
+
 app.use(session({ secret: 'peoplepowersecrets' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
-require('./app/routes/index.js')(app, passport); // load our routes and pass in our app and fully configured passport
+routes = require('./app/routes/index.js'); // load our routes and pass in our app and fully configured passport
 
 //routes
-// app.use(routes);
+app.use(routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

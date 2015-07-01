@@ -1,41 +1,48 @@
-module.exports = function(app, passport){
-  /* GET home page. */
-  app.get('/', function(req, res, next) {
-    res.render('index.ejs', { user: req.user });
+var express = require('express');
+var router = express.Router();
+var passport = require('passport');
+var questionService = require('../models/services/questionService')
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index.ejs', { user: req.user });
+});
+
+router.get('/login', function(req, res, next){
+  res.render('login.ejs', { message: req.flash('loginMessage') });
+}); 
+
+router.get('/signup', function(req, res, next) {
+  res.render('signup.ejs', { message: req.flash('signupMessage') });
+});
+
+router.get('/profile', isLoggedIn, function(req, res, next) {
+  res.render('profile.ejs', {
+    user : req.user // get the user out of session and pass to template
   });
+});
 
-  app.get('/login', function(req, res, next){
-    res.render('login.ejs', { message: req.flash('loginMessage')})
-  }); 
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
 
-  app.get('/signup', function(req, res, next) {
-    res.render('signup.ejs', { message: req.flash('signupMessage') });
-  });
+router.post('/signup', passport.authenticate('local-signup', {
+  successRedirect : '/', // redirect to the secure profile section
+  failureRedirect : '/signup', // redirect back to the signup page if there is an error
+  failureFlash : true // allow flash messages
+}));
 
-  app.get('/profile', isLoggedIn, function(req, res, next) {
-    res.render('profile.ejs', {
-      user : req.user // get the user out of session and pass to template
-    });
-  });
+router.post('/create_question', function(req, res){
+  res.body
+});
 
-  app.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-  });
-
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/', // redirect to the secure profile section
-    failureRedirect : '/signup', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-  }));
-
-  // process the login form
-  app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/', // redirect to the secure profile section
-    failureRedirect : '/login', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-  }));
-};  
+// process the login form
+router.post('/login', passport.authenticate('local-login', {
+  successRedirect : '/', // redirect to the secure profile section
+  failureRedirect : '/login', // redirect back to the signup page if there is an error
+  failureFlash : true // allow flash messages
+}));
 
 function isLoggedIn(req, res, next) {
   // if user is authenticated in the session, carry on 
@@ -45,3 +52,4 @@ function isLoggedIn(req, res, next) {
   res.redirect('/');
 }
 
+module.exports = router;
