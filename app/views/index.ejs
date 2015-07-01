@@ -2,10 +2,6 @@
 <main class="container">
   <div class="jumbotron text-center">
     <h1>People Power</h1>
-    <p>Login or Register:</p>
-    <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
-    <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
-  </div>
   <% if(user){ %>
       Ask a question!
       <form action="/create_question" method="post">
@@ -14,7 +10,12 @@
         </div>
         <button type="submit" class="btn btn-warning btn-lg">Ask</button>
       </form>
-  <% } %>  
+      <% }else{ %>
+      <p>Login or Register:</p>
+    <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
+    <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
+  </div>
+  <% } %>
 </main>
 <% include footer %>
 
