@@ -1,0 +1,16 @@
+extend ../layout
+
+block content
+  h1 Login
+  p Please login!
+  if message.length > 0  
+    ul.errors
+      li.alert.alert.alert-danger #{message}
+  form(method='post', action='login', enctype=multipart/form-data)
+    .form-group
+      label User name
+      input.form-control(name='username', type='text', placeholder='Enter user name')
+    .form-group
+      label Password
+      input.form-control(name='password', type='password', placeholder='Enter password')
+    input.btn.btn-default(name='submit', type='submit', value='login')      

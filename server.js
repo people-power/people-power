@@ -1,3 +1,4 @@
+//for relative paths use require.main.require('app/models/article')
 // server setup
 var express = require('express');
 var app = express();
@@ -21,23 +22,19 @@ var mongoose = require('mongoose');
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
 
-//routes variables
-var routes = require('./app/routes/index');
-var users = require('./app/routes/users');
-
 // view engine setup
-app.set('views', path.join(__dirname, './app/views'));
+app.set('views', path.join(__dirname, './browser/views'));
 app.engine('html', require('jade').renderFile);
 app.set('view engine', 'jade');
 
 //general
-app.use(favicon(__dirname + '/app/public/images/favicon.ico'));
+app.use(favicon(__dirname + '/browser/images/favicon.ico'));
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(multer({ dest: './uploads/' }))
-app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use(multer({ dest: './app/user/uploads/' }).single('profileimage'));
+app.use('/uploads', express.static(__dirname + '/app/user/uploads'));
 
 //validator
 app.use(expressValidator({
@@ -85,12 +82,15 @@ app.use(function (req, res, next) {
 });
 
 // pipeline
-app.use(express.static(path.join(__dirname, '/app/public')));
-app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+app.use('/browser', express.static(__dirname + '/browser'));
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
+
+var site = require('./app/site/routes/site');
+var user = require('./app/user/routes/user');
 
 //routes
-app.use('/', routes);
-app.use('/users', users);
+app.use('/', site);
+app.use('/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
