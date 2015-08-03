@@ -5,7 +5,7 @@ var passport = require('passport');
 var userService = require('./services/user')
 
 router.get('/register', function(req, res, next) {
-  res.render('user/register', { layout: '../layout', title: 'Register' });
+  res.render('user/register', { layout: '../layout', title: 'People Power | Register' });
 });
 
 router.post('/register', function(req, res, next) {
@@ -25,7 +25,7 @@ router.post('/register', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('user/login', { title: 'Login', message: req.flash('error') } );
+  res.render('user/login', { title: 'People Power | Login', message: req.flash('error') } );
 });
 
 router.post('/login', 

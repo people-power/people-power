@@ -18,11 +18,14 @@ html
         #navbar
           if !user
             ul.nav.navbar-nav
-              li(class=(title == 'Register' ? 'active' : ''))
+              li(class=(title == 'People Power | Register' ? 'active' : ''))
                 a(href='/user/register') Register
-              li(class=(title == 'Login' ? 'active' : ''))
+              li(class=(title == 'People Power | Login' ? 'active' : ''))
                 a(href='/user/login') Login
           else
+            ul.nav.navbar-nav
+              li(class=(title == 'People Power | Ask' ? 'active' : ''))
+                a(href='/question/ask') Ask  
             ul.nav.navbar-nav.navbar-right
               li 
                 a(href='/user/profile')
