@@ -1,3 +1,3 @@
 module.exports = {
-  'url' : 'mongodb://localhost/nodeAuthDevelopment'
+  'url' : 'mongodb://localhost/peoplePowerDevelopment'
 }

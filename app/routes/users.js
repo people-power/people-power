@@ -4,18 +4,14 @@ var User = require('../models/user')
 var passport = require('passport');
 var userService = require('./services/user')
 
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Node app' });
-});
-
 router.get('/register', function(req, res, next) {
-  res.render('register', { title: 'Register' });
+  res.render('users/register', { title: 'Register' });
 });
 
 router.post('/register', function(req, res, next) {
   userCheck = userService.checkRegistration(req, next);
   if(userCheck.errors){
-    res.render('register', { errors: userCheck.errors });
+    res.render('users/register', { errors: userCheck.errors });
   } else {
     User.createUser(userCheck, function(err, user){
       if(err) throw err;
@@ -29,7 +25,7 @@ router.post('/register', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login', message: req.flash('error') } );
+  res.render('users/login', { title: 'Login', message: req.flash('error') } );
 });
 
 router.post('/login', 

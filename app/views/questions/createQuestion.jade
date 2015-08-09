@@ -1,0 +1,17 @@
+extend layout
+
+block content
+  h1 Ask away!
+  form(method='post', action='ask', id='ask')
+    each cat in categories.categories
+      .form-group.cat-checkbox
+        label= cat 
+        input.form-control(name='tags', type='checkbox' value='#{cat}')
+    .form-group  
+      textarea(form='ask', name='text')
+    .form-group 
+      input.btn.btn-default(name='submit', type='submit', value='Ask!')  
+
+
+
+

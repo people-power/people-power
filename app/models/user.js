@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt');
 
-var UserSchema = mongoose.Schema({
+var UserSchema = new mongoose.Schema({
   name: {
     type: String
   },
@@ -13,6 +13,12 @@ var UserSchema = mongoose.Schema({
   },
   password: {
     type: String, required: true, bcrypt: true
+  },
+  constituency: {
+    type: String
+  },
+  points: {
+    type: Number, default: 0
   },
   profileImage: {
     type: String

@@ -1,0 +1,5 @@
+{
+	"undefined": "localhost/peoplePowerDevelopment",
+	"dev": "localhost/peoplePowerDevelopment",
+	"prod": "localhost/PROD_DB_NAME"
+}

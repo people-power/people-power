@@ -4,4 +4,16 @@ block content
 
   ul
     li #{message}
-  h1 Hello world
+  if user  
+    h2
+      a(href='questions/ask') Ask
+  if questions
+    ul
+      each question in questions
+        li question.votes
+          h2 
+            a(href='questions/question._id') #{question.title}
+        ul
+          li Asked by: #{question.createdBy.username} on #{question.createdOn}
+
+

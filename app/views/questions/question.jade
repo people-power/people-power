@@ -1,0 +1,22 @@
+extend layout
+
+block content
+  ul
+    li question.votes
+      h2 #{question.title}
+    ul
+      li Asked by: #{question.createdBy.username} on #{question.createdOn}
+      li #{question.text}
+      if question.comments
+        each comments in question.comments
+        li #{comment.text}
+        li Posted by: #{comment.createdBy} on #{comment.createdAt}
+      if question.answers
+        each answer in question.answers
+        li #{answer.text}
+        li Answered by: #{answer.createdBy} on #{answer.createdAt}   
+
+
+
+
+

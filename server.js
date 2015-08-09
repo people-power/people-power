@@ -24,6 +24,7 @@ mongoose.connect(configDB.url);
 //routes variables
 var routes = require('./app/routes/index');
 var users = require('./app/routes/users');
+var questions = require('./app/routes/questions');
 
 // view engine setup
 app.set('views', path.join(__dirname, './app/views'));
@@ -91,6 +92,7 @@ app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 //routes
 app.use('/', routes);
 app.use('/users', users);
+app.use('/questions', questions);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
