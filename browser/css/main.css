@@ -1,3 +1,6 @@
 body{
   padding-top: 70px;
 }
+ul.nav.navbar-nav.navbar-right li:first-child a{
+  padding: 12px 5px 0 15px;
+}

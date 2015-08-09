@@ -15,6 +15,8 @@ module.exports = function(){
     });
   });
 
+  
+
   passport.use(new LocalStrategy(function(username, password, done){
     User.getUserByUsername(username, function(err, user){
       if(err) throw err;

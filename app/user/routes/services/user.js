@@ -12,7 +12,7 @@ exports.checkRegistration = function(req, next){
   var password = req.body.password;
   var password2 = req.body.password2;
   console.log(req.file)
-  if( req.file.filename ) {
+  if( req.file ) {
     var profileImageName = req.file.filename;
   } else {
     var profileImageName = 'defaultimage.jpg';
@@ -37,9 +37,9 @@ exports.checkRegistration = function(req, next){
 exports.resizeImage = function(userCheck, callback){
   var imagePath = './app/user/uploads/' + userCheck.profileImage;
   gm(imagePath)
-    .thumbnail(50, 50 + '^')
+    .thumbnail(25, 25 + '^')
     .gravity('Center')
-    .extent(50, 50)
+    .extent(25, 25)
     .write(imagePath, function (error) {
       if (error) console.log('Error - ', error);
       callback()

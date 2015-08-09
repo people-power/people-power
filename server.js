@@ -87,10 +87,12 @@ app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 var site = require('./app/site/routes/site');
 var user = require('./app/user/routes/user');
+var question = require('./app/question/routes/question');
 
 //routes
 app.use('/', site);
 app.use('/user', user);
+app.use('/question', question);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
