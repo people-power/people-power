@@ -66,7 +66,7 @@ app.use(session(
 //passport
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport')(passport);
+require('./app/user/routes/services/passport')(passport);
 
 //current user
 app.get('*', function(req, res, next){

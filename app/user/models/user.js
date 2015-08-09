@@ -29,7 +29,11 @@ module.exports.comparePassword = function(submittedPassword, hash, callback){
 }
 
 module.exports.getUserByUsername = function(username, callback){
-  var query = {username: username};
+  var query = { username: username };
+  User.findOne(query, callback);
+}
+
+module.exports.isValueUnique = function(query, callback){
   User.findOne(query, callback);
 }
 

@@ -5,13 +5,12 @@ var passport = require('passport');
 var fs = require('fs');
 var gm = require('gm');
 
-exports.checkRegistration = function(req, next){
+exports.checkRegistration = function(req, done){
   var name = req.body.name;
   var email = req.body.email;
   var username = req.body.username;
   var password = req.body.password;
   var password2 = req.body.password2;
-  console.log(req.file)
   if( req.file ) {
     var profileImageName = req.file.filename;
   } else {
