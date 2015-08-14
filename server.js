@@ -15,6 +15,15 @@ var multer = require('multer');
 var gm = require('gm')
 var flash = require('connect-flash');
 var expressValidator = require('express-validator');
+var http = require('http');
+var port = process.env.PORT || 3000;
+var server = app.listen(port, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log('app listening at ', host, port);
+});
+var io = require('socket.io').listen(server);
+server.listen(port);
 
 //db
 var mongo = require('mongodb');

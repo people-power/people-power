@@ -19,7 +19,7 @@ var QuestionSchema = new mongoose.Schema({
     type: Number, default: 0 
   },
   tags: {
-    type : Array , default: []
+    type : Array, default: []
   },
   answers: {
     type: [Answer.schema], default: []
@@ -31,12 +31,22 @@ var QuestionSchema = new mongoose.Schema({
 
 var Question = module.exports = mongoose.model('Question', QuestionSchema)
 
+module.exports.getQuestions = function(callback){
+  Question.find({})
+    .populate('createdBy', 'username profileImage')
+    .sort({createdOn: 'desc'})
+    .exec(function(err, docs){
+      callback(docs)
+  })
+}
+
 module.exports.createQuestion = function(question, callback){
   var newQuestion = new Question({
-    createdBy: question.createdBy,
+    createdBy: question.createdBy.id,
     title: question.title,
     content: question.content,
     tags: question.tags
   });
+  console.log("created question" + newQuestion);
   newQuestion.save(callback)
 }

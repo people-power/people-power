@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../../models/user')
-var passport = require('passport');
 var fs = require('fs');
 var gm = require('gm');
+var im = gm.subClass({ imageMagick: true });
 
 exports.checkRegistration = function(req, done){
   var name = req.body.name;
@@ -37,6 +36,7 @@ exports.resizeImage = function(userCheck, callback){
   var imagePath = './app/user/uploads/' + userCheck.profileImage;
   gm(imagePath)
     .thumbnail(25, 25 + '^')
+    .quality(100)
     .gravity('Center')
     .extent(25, 25)
     .write(imagePath, function (error) {

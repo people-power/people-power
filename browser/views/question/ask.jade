@@ -1,4 +1,27 @@
 extend ../layout
 
 block content
-  h1 Hello world
+  h1 Ask away!
+  ul.errors
+  if errors
+    each error, i in errors
+      li.alert.alert.alert-danger #{error.msg}
+    if message.length > 0
+      li.alert.alert.alert-danger #{message}      
+  form(method='post', action='ask', id="ask", enctype='multipart/form-data')
+    .form-group
+      label Title
+      input.form-control(name='title', type='text', placeholder="What's your question? Be specific.")
+    .form-group
+      label Start writing here...
+      textarea.form-control(form='ask', id='question_content', name='question_content')
+    each tag in tags.categories  
+      .form-group.cat-checkbox
+        label= tag
+        input.form-control(name='tags', type='checkbox' value='#{tag}')
+      
+    input.btn.btn-default(name='submit', type='submit', value='Ask!') 
+  
+  script(src='/browser/ckeditor/ckeditor.js')  
+  script
+    | CKEDITOR.replace('question_content')    
