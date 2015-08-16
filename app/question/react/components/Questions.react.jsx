@@ -8,7 +8,7 @@ var Questions = React.createClass({
   render: function(){
 
     // Build list items of single tweet components using map
-    var content = this.props.questions.map(function(question){
+    var content = this.props.questions.map(function(question, key){
       return (
         <Question question={question} />
       )

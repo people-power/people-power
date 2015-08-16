@@ -8,10 +8,10 @@ var Question = React.createClass({
       <li className={"question"}>
         <blockquote>
           <cite>
-            <a href="#">{question.title}</a> 
-            <span className="question-createdby">{question.createdBy.username}</span> 
+            <h2><a href="#">{question.title}</a></h2> 
+            <span className="question-createdby">Asked by: {question.createdBy.username} on {question.createdOn}</span> 
           </cite>
-          <span className="question-content">{question.content}</span>
+          <p className="question-content">{question.content}</p>
         </blockquote>
       </li>
     )

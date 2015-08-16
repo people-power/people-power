@@ -1,7 +1,7 @@
 mongoose = require('mongoose');
 Comment = require('./comment')
 
-var AnswerSchema = new mongoose.Schema({
+var AnswerSchema = mongoose.Schema({
   createdBy: { 
     type: mongoose.Schema.Types.ObjectId, ref: 'User' 
   },

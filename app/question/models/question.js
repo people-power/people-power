@@ -2,12 +2,12 @@ mongoose = require('mongoose');
 Answer = require('./answer');
 Comment = require('./comment')
 
-var QuestionSchema = new mongoose.Schema({
+var QuestionSchema = mongoose.Schema({
   createdBy: { 
     type: mongoose.Schema.Types.ObjectId, ref: 'User' 
   },
   createdOn: { 
-    type: Date, default: Date.now 
+    type: String 
   },
   title: {
     type: String, required: true
@@ -41,12 +41,13 @@ module.exports.getQuestions = function(callback){
 }
 
 module.exports.createQuestion = function(question, callback){
+  date = new Date;
   var newQuestion = new Question({
     createdBy: question.createdBy.id,
+    createdOn: date.toUTCString,
     title: question.title,
     content: question.content,
     tags: question.tags
   });
-  console.log("created question" + newQuestion);
   newQuestion.save(callback)
 }

@@ -19,7 +19,8 @@ router.post('/ask', function(req, res, next){
       errors: questionCheck.errors })
   } else {
     Question.createQuestion(questionCheck, function(err, question){
-      if(err){ throw err }
+      if(err){ console.log(err) }
+      console.log("question posted:" + question)
       // questionService.io.emit('question', question);
       req.flash('Your question was posted successfully');
       res.redirect('/');

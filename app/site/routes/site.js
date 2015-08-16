@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
         questions: questions
       })
     );
-    console.log(markup)
+    console.log(questions)
     res.render('index', { 
       title: 'People Power | Home',
       markup: markup,
